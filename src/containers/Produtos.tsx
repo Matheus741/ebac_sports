@@ -1,43 +1,25 @@
-import { Produto as ProdutoType } from '../App'
+import React from 'react'
+import { useGetProductsQuery } from '../store/services/productsApi'
 import Produto from '../components/Produto'
+import { Container, Produtos as GridProdutos } from './styles'
 
-import * as S from './styles'
+const Produtos: React.FC = () => {
+  const { data: produtos, isLoading, isError } = useGetProductsQuery()
 
-type Props = {
-  produtos: ProdutoType[]
-  favoritos: ProdutoType[]
-  adicionarAoCarrinho: (produto: ProdutoType) => void
-  favoritar: (produto: ProdutoType) => void
-}
-
-const ProdutosComponent = ({
-  produtos,
-  favoritos,
-  adicionarAoCarrinho,
-  favoritar
-}: Props) => {
-  const produtoEstaNosFavoritos = (produto: ProdutoType) => {
-    const produtoId = produto.id
-    const IdsDosFavoritos = favoritos.map((f) => f.id)
-
-    return IdsDosFavoritos.includes(produtoId)
-  }
+  if (isLoading) return <p>Carregando...</p>
+  if (isError) return <p>Erro ao carregar produtos.</p>
 
   return (
-    <>
-      <S.Produtos>
-        {produtos.map((produto) => (
-          <Produto
-            estaNosFavoritos={produtoEstaNosFavoritos(produto)}
-            key={produto.id}
-            produto={produto}
-            favoritar={favoritar}
-            aoComprar={adicionarAoCarrinho}
-          />
+    <Container>
+      <GridProdutos>
+        {produtos?.map((p) => (
+          <li key={p.id}>
+            <Produto produto={p} />
+          </li>
         ))}
-      </S.Produtos>
-    </>
+      </GridProdutos>
+    </Container>
   )
 }
 
-export default ProdutosComponent
+export default Produtos

@@ -1,32 +1,21 @@
-import * as S from './styles'
+import React from 'react'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { toggleCart } from '../../store/modules/cart/slice'
+import { HeaderBar, CartBadge, CartButton } from './styles'
 
-import { Produto } from '../../App'
-
-import cesta from '../../assets/cesta.png'
-import { paraReal } from '../Produto'
-
-type Props = {
-  itensNoCarrinho: Produto[]
-  favoritos: Produto[]
-}
-
-const Header = ({ itensNoCarrinho, favoritos }: Props) => {
-  const valorTotal = itensNoCarrinho.reduce((acc, item) => {
-    acc += item.preco
-    return acc
-  }, 0)
+const Header: React.FC = () => {
+  const dispatch = useAppDispatch()
+  const totalItems = useAppSelector((state) =>
+    state.cart.items.reduce((acc, item) => acc + item.quantity, 0)
+  )
 
   return (
-    <S.Header>
+    <HeaderBar>
       <h1>EBAC Sports</h1>
-      <div>
-        <span>{favoritos.length} favoritos</span>
-        <img src={cesta} />
-        <span>
-          {itensNoCarrinho.length} itens, valor total: {paraReal(valorTotal)}
-        </span>
-      </div>
-    </S.Header>
+      <CartButton onClick={() => dispatch(toggleCart())}>
+        Carrinho <CartBadge>{totalItems}</CartBadge>
+      </CartButton>
+    </HeaderBar>
   )
 }
 

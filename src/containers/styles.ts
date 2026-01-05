@@ -1,5 +1,12 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+`
+
 export const Produtos = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

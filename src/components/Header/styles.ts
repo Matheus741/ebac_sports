@@ -1,45 +1,39 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
 
-export const Header = styled.header`
-  background-image: linear-gradient(
-    45deg,
-    ${cores.corPrincipal},
-    ${cores.corSecundaria}
-  );
-  margin: 80px 0;
-  padding: 16px 24px;
+export const HeaderBar = styled.header`
   display: flex;
-  border-radius: 6px;
   align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: #111;
+  color: #fff;
+`
 
-  h1 {
-    font-size: 18px;
-    flex: 1;
-    font-style: italic;
-    color: ${cores.corFundo};
+export const CartButton = styled.button`
+  border: none;
+  background: #fff;
+  color: #111;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    filter: brightness(0.95);
   }
+`
 
-  div {
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 18px;
-      margin-right: 8px;
-      margin-left: 16px;
-    }
-
-    span {
-      color: ${cores.corFundo};
-    }
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-
-    div {
-      margin-top: 16px;
-    }
-  }
+export const CartBadge = styled.span`
+  display: inline-block;
+  min-width: 24px;
+  padding: 0 6px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 10px;
+  background: #ff3b3b;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
 `

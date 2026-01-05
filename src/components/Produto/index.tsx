@@ -1,43 +1,33 @@
-import { Produto as ProdutoType } from '../../App'
-import * as S from './styles'
+import React from 'react'
+import { Button, Card } from './styles'
+import { useAppDispatch } from '../../store/hooks'
+import { addItem } from '../../store/modules/cart/slice'
+import type { Product } from '../../store/services/productsApi'
 
-type Props = {
-  produto: ProdutoType
-  aoComprar: (produto: ProdutoType) => void
-  favoritar: (produto: ProdutoType) => void
-  estaNosFavoritos: boolean
-}
+type Props = { produto: Product }
 
-export const paraReal = (valor: number) =>
-  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(
-    valor
-  )
+const Produto: React.FC<Props> = ({ produto }) => {
+  const dispatch = useAppDispatch()
 
-const ProdutoComponent = ({
-  produto,
-  aoComprar,
-  favoritar,
-  estaNosFavoritos
-}: Props) => {
+  const handleAdd = () => {
+    dispatch(
+      addItem({
+        id: produto.id,
+        title: produto.title,
+        price: produto.price,
+        image: produto.image
+      })
+    )
+  }
+
   return (
-    <S.Produto>
-      <S.Capa>
-        <img src={produto.imagem} alt={produto.nome} />
-      </S.Capa>
-      <S.Titulo>{produto.nome}</S.Titulo>
-      <S.Prices>
-        <strong>{paraReal(produto.preco)}</strong>
-      </S.Prices>
-      <S.BtnComprar onClick={() => favoritar(produto)} type="button">
-        {estaNosFavoritos
-          ? '- Remover dos favoritos'
-          : '+ Adicionar aos favoritos'}
-      </S.BtnComprar>
-      <S.BtnComprar onClick={() => aoComprar(produto)} type="button">
-        Adicionar ao carrinho
-      </S.BtnComprar>
-    </S.Produto>
+    <Card>
+      <img src={produto.image} alt={produto.title} />
+      <h3>{produto.title}</h3>
+      <p>R$ {produto.price.toFixed(2)}</p>
+      <Button onClick={handleAdd}>Adicionar ao carrinho</Button>
+    </Card>
   )
 }
 
-export default ProdutoComponent
+export default Produto

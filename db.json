@@ -1,0 +1,25 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "title": "Tênis Running",
+      "price": 299.9,
+      "image": "/images/tenis-running.jpg",
+      "description": "Leve e confortável"
+    },
+    {
+      "id": 2,
+      "title": "Camisa Dry Fit",
+      "price": 99.9,
+      "image": "/images/camisa-dry.jpg",
+      "description": "Respirável e rápida secagem"
+    },
+    {
+      "id": 3,
+      "title": "Bermuda Esportiva",
+      "price": 149.9,
+      "image": "/images/bermuda.jpg",
+      "description": "Flexível e resistente"
+    }
+  ]
+}
