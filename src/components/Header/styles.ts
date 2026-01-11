@@ -5,8 +5,14 @@ export const HeaderBar = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  background: #111;
+  background: #000;
   color: #fff;
+
+  h1 {
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
 `
 
 export const CartButton = styled.button`
@@ -16,9 +22,10 @@ export const CartButton = styled.button`
   padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
+  font-weight: bold;
 
   &:hover {
     filter: brightness(0.95);

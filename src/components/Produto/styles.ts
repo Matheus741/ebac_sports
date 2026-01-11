@@ -6,17 +6,23 @@ export const Card = styled.article`
   padding: 16px;
   background: #fff;
 
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
   img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 180px;
+    object-fit: contain;
     border-radius: 6px;
     margin-bottom: 12px;
+    background: #f5f5f5;
   }
 
   h3 {
     margin: 8px 0;
     font-size: 1rem;
+    flex-grow: 1;
   }
 
   p {
