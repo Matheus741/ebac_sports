@@ -37,4 +37,3 @@ const ProdutosComponent = ({ produtos, favoritos, favoritar }: Props) => {
 }
 
 export default ProdutosComponent
-
