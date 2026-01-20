@@ -1,8 +1,7 @@
 import { Produto as ProdutoType } from '../App'
 import Produto from '../components/Produto'
 import { useDispatch } from 'react-redux'
-import { adicionarAoCarrinho } from '../store/cartSlice'
-
+import { adicionarProduto } from '../store/cartSlice'
 import * as S from './styles'
 
 type Props = {
@@ -29,7 +28,7 @@ const ProdutosComponent = ({ produtos, favoritos, favoritar }: Props) => {
           key={produto.id}
           produto={produto}
           favoritar={favoritar}
-          aoComprar={() => dispatch(adicionarAoCarrinho(produto))}
+          aoComprar={() => dispatch(adicionarProduto(produto))}
         />
       ))}
     </S.Produtos>
